@@ -35,7 +35,7 @@ class Response
 
     public static function fromResponseInterface(ResponseInterface $response): self
     {
-        if (200 !== $response->getStatusCode()) {
+        if (200 !== $response->getStatusCode() && empty($response->getBody()->getSize())) {
             throw new InvalidDataException("Response must have status code 200, got: {$response->getStatusCode()}");
         }
 
